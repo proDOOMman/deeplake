@@ -246,9 +246,7 @@ class Dataset:
         try:
             self._set_derived_attributes(address=address)
         except LockedException:
-            raise LockedException(
-                "This dataset cannot be open for writing as it is locked by another machine. Try loading the dataset with `read_only=True`."
-            )
+            raise LockedException()
         except ReadOnlyModeError as e:
             raise ReadOnlyModeError(
                 "This dataset cannot be open for writing as you don't have permissions. Try loading the dataset with `read_only=True."

@@ -313,7 +313,12 @@ class WaitTimeoutException(Exception):
 
 
 class LockedException(Exception):
-    def __init__(self, message="The resource is currently locked."):
+    def __init__(
+        self,
+        message="This dataset cannot be open for writing as it is locked by another machine. "
+        "Consider increasing opening it with read_only=True or increasing lock_timeout which auto-waits for the lock to be available. "
+        "For more more complex locking needs, consider managing your own locks with an external system. See docs.deeplake.ai for more information on setting lock_enabled=False.",
+    ):
         super().__init__(message)
 
 
